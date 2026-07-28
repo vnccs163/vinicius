@@ -9,40 +9,106 @@
     <link href="https://fonts.googleapis.com/css2?family=SickCapital&display=swap" rel="stylesheet">
     
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #FAF5EF;
+            color: #333;
         }
 
+        /* Cabeçalho */
         header {
             background-color: #F0C2A6;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
-            padding: 16px;
-            border-radius: 0 0 8px 8px;
+            padding: 24px 16px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* Aplicação da fonte SickCapital no h1 */
         header h1 {
             font-family: 'SickCapital', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #8B3A00; 
+            margin: 0 0 8px 0;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #5A2A00;
+        }
+
+        /* Conteúdo Principal */
+        main {
+            max-width: 800px;
+            margin: 24px auto;
+            padding: 24px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .boas-vindas {
+            border-bottom: 2px dashed #F0C2A6;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .boas-vindas h2 {
+            color: #4A6B32;
+            margin-top: 0;
+        }
+
+        .autores {
+            font-size: 0.95rem;
+            color: #666;
             margin-bottom: 8px;
         }
 
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 16px;
-            background-color: #ffffff;
-            border-radius: 8px;
+        /* Seção de Receitas */
+        .secao-receitas {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
-        main h2 {
-            color: #4A6B32; 
+        .card-receita {
+            border: 1px solid #EAEAEA;
+            border-left: 6px solid #F0C2A6;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #FFFDFB;
+        }
+
+        .card-receita h3 {
+            color: #8B3A00;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .ingredientes h4, .modo-preparo h4 {
+            color: #4A6B32;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
         }
     </style>
 </head>
@@ -54,10 +120,71 @@
     </header>
 
     <main>
-        <h2>Comidas como batata, etc.</h2>
-        <p><strong>Feito por:</strong> Vinicius e Lavinya</p>
-        <p>Boas-vindas ao melhor site de receitas fáceis do mundo! Aprenda com cuidado e boa sorte.</p>
+        <section class="boas-vindas">
+            <h2>Boas-vindas!</h2>
+            <p class="autores"><strong>Feito por:</strong> Vinicius e Lavinya</p>
+            <p>Seja bem-vindo ao melhor site de receitas fáceis do mundo! Aprenda com cuidado, divirta-se na cozinha e boa sorte.</p>
+        </section>
+
+        <section class="secao-receitas">
+            <h2>Receitas em Destaque</h2>
+
+            <article class="card-receita">
+                <h3>🥔 Batata Rústica no Forno</h3>
+                <p>Crocante por fora e macia por dentro, perfeita para um lanche rápido!</p>
+                
+                <div class="ingredientes">
+                    <h4>Ingredientes:</h4>
+                    <ul>
+                        <li>3 batatas grandes lavadas</li>
+                        <li>2 colheres (sopa) de azeite</li>
+                        <li>1 colher (chá) de páprica doce ou picante</li>
+                        <li>Sal, pimenta-do-reino e orégano a gosto</li>
+                    </ul>
+                </div>
+
+                <div class="modo-preparo">
+                    <h4>Modo de Preparo:</h4>
+                    <ol>
+                        <li>Corte as batatas em gomos (com casca mesmo).</li>
+                        <li>Em uma tigela, tempere as batatas com o azeite, páprica, orégano, sal e pimenta.</li>
+                        <li>Espalhe em uma assadeira sem sobrepor as batatas.</li>
+                        <li>Leve ao forno pré-aquecido a 200°C por cerca de 30 a 40 minutos até dourarem.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="card-receita">
+                <h3>🍫 Brigadeiro Tradicional</h3>
+                <p>O doce brasileiro mais amado e fácil de fazer.</p>
+                
+                <div class="ingredientes">
+                    <h4>Ingredientes:</h4>
+                    <ul>
+                        <li>1 caixa de leite condensado (395g)</li>
+                        <li>1 colher (sopa) de manteiga</li>
+                        <li>3 colheres (sopa) de achocolatado ou cacau em pó</li>
+                        <li>Granulado para decorar</li>
+                    </ul>
+                </div>
+
+                <div class="modo-preparo">
+                    <h4>Modo de Preparo:</h4>
+                    <ol>
+                        <li>Em uma panela, misture o leite condensado, a manteiga e o achocolatado.</li>
+                        <li>Leve ao fogo médio/baixo, mexendo sempre para não grudar no fundo.</li>
+                        <li>Cozinhe até a mistura soltar do fundo da panela (ponto de brigadeiro).</li>
+                        <li>Despeje em um prato untado com manteiga e deixe esfriar. Enrole e passe no granulado!</li>
+                    </ol>
+                </div>
+            </article>
+
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 receitas.com.br - Todos os direitos reservados.</p>
+    </footer>
 
 </body>
 </html>
