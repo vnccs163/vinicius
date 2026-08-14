@@ -10,40 +10,95 @@
     <link href="https://fonts.googleapis.com/css2?family=SickCapital&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-body: #FAF5EF;
+            --bg-card: #ffffff;
+            --bg-card-sub: #FFFDFB;
+            --text-main: #333333;
+            --text-sub: #666666;
+            --header-bg: #F0C2A6;
+            --primary-color: #8B3A00;
+            --secondary-color: #4A6B32;
+            --border-color: #EAEAEA;
+        }
+
+        /* Variables para Modo Escuro */
+        body.dark-mode {
+            --bg-body: #1e1e1e;
+            --bg-card: #2d2d2d;
+            --bg-card-sub: #383838;
+            --text-main: #f1f1f1;
+            --text-sub: #cccccc;
+            --header-bg: #4a2c1d;
+            --primary-color: #fca311;
+            --secondary-color: #8ac926;
+            --border-color: #444444;
+        }
+
         * {
             box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #FAF5EF;
-            color: #333;
+            background-color: var(--bg-body);
+            color: var(--text-main);
         }
 
-        /* Cabeçalho */
-        header {
-            background-color: #F0C2A6;
-            text-align: center;
+        /* Controles do Topo (Modo Escuro) */
+        .top-bar {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 10px auto 0;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 10px;
+        }
+
+        .btn-theme {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Cabeçalho com Imagem de Fundo */
+        header {
+            max-width: 800px;
+            height: 250px;
+            margin: 10px auto 0;
             padding: 24px 16px;
-            border-radius: 0 0 12px 12px;
+            border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            
+            background-image: url('logo-header.jpg'); /* Substitua pelo nome da sua imagem local */
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
         }
 
         header h1 {
-            font-family: 'SickCapital', sans-serif;
-            font-size: 2.8rem;
-            color: #8B3A00; 
-            margin: 0 0 8px 0;
+            display: none; 
         }
 
         header p {
             margin: 0;
             font-size: 1.1rem;
             color: #5A2A00;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
         }
 
         /* Conteúdo Principal */
@@ -51,26 +106,41 @@
             max-width: 800px;
             margin: 24px auto;
             padding: 24px;
-            background-color: #ffffff;
+            background-color: var(--bg-card);
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .boas-vindas {
-            border-bottom: 2px dashed #F0C2A6;
+            border-bottom: 2px dashed var(--header-bg);
             padding-bottom: 16px;
             margin-bottom: 24px;
         }
 
         .boas-vindas h2 {
-            color: #4A6B32;
+            color: var(--secondary-color);
             margin-top: 0;
         }
 
         .autores {
             font-size: 0.95rem;
-            color: #666;
+            color: var(--text-sub);
             margin-bottom: 8px;
+        }
+
+        /* Barra de Pesquisa */
+        .search-container {
+            margin-bottom: 24px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-card-sub);
+            color: var(--text-main);
         }
 
         /* Seção de Receitas */
@@ -81,17 +151,34 @@
         }
 
         .card-receita {
-            border: 1px solid #EAEAEA;
-            border-left: 6px solid #F0C2A6;
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--header-bg);
             border-radius: 8px;
             padding: 20px;
-            background-color: #FFFDFB;
+            background-color: var(--bg-card-sub);
         }
 
         .card-receita h3 {
-            color: #8B3A00;
+            color: var(--primary-color);
             margin-top: 0;
             font-size: 1.4rem;
+        }
+
+        /* Badges de Informações */
+        .badges-info {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: var(--header-bg);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: bold;
         }
 
         /* Enquadramento das Imagens */
@@ -103,20 +190,37 @@
             margin-bottom: 16px;
         }
 
-        .ingredientes h4, .modo-preparo h4, .video-container h4 {
-            color: #4A6B32;
+        .ingredientes h4, .modo-preparo h4, .video-container h4, .comentarios h4 {
+            color: var(--secondary-color);
             margin-bottom: 8px;
         }
 
-        ul, ol {
+        /* Checklist para Ingredientes */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        ol {
             padding-left: 20px;
             line-height: 1.6;
         }
 
-        /* Container Responsivo para Vídeos */
+        /* Container de Vídeos */
         .video-box {
             position: relative;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 8px;
@@ -132,16 +236,54 @@
             border: 0;
         }
 
+        /* Botão Imprimir */
+        .btn-print {
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 16px;
+            font-weight: bold;
+        }
+
+        /* Avaliações */
+        .rating {
+            margin-top: 16px;
+            font-size: 1.2rem;
+            color: #f39c12;
+            cursor: pointer;
+        }
+
         /* Rodapé */
         footer {
             text-align: center;
             padding: 20px;
             font-size: 0.9rem;
-            color: #777;
+            color: var(--text-sub);
+        }
+
+        /* Estilos de Impressão */
+        @media print {
+            .top-bar, .search-container, .video-container, .btn-print, .rating, footer {
+                display: none !important;
+            }
+            body {
+                background: #fff;
+                color: #000;
+            }
+            main {
+                box-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
+
+    <div class="top-bar">
+        <button class="btn-theme" onclick="toggleTheme()">🌙 Modo Escuro</button>
+    </div>
 
     <header>
         <h1>receitas.com.br</h1>
@@ -155,22 +297,33 @@
             <p>Seja bem-vindo ao melhor site de receitas fáceis do mundo! Aprenda com cuidado, divirta-se na cozinha e boa sorte.</p>
         </section>
 
-        <section class="secao-receitas">
-            <h2>Receitas em Destaque</h2>
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterRecipes()" placeholder="🔍 Pesquisar receita por nome ou ingrediente...">
+        </div>
+
+        <section class="secao-receitas" id="recipeList">
 
             <!-- Receita 1: Batata -->
             <article class="card-receita">
                 <h3>🥔 Batata Rústica no Forno</h3>
+                
+                <div class="badges-info">
+                    <span class="badge">⏱️ 40 min</span>
+                    <span class="badge">🍽️ 4 porções</span>
+                    <span class="badge">🟢 Fácil</span>
+                </div>
+
                 <img src="https://minhasreceitinhas.com.br/wp-content/uploads/2022/09/como-fazer-batata-rustica-de-forno-scaled-1.jpg" alt="Como Fazer Batata Rústica de Forno" class="img-receita">
                 <p>Crocante por fora e macia por dentro, perfeita para um lanche rápido!</p>
                 
                 <div class="ingredientes">
-                    <h4>Ingredientes:</h4>
-                    <ul>
-                        <li>3 batatas grandes lavadas</li>
-                        <li>2 colheres (sopa) de azeite</li>
-                        <li>1 colher (chá) de páprica doce ou picante</li>
-                        <li>Sal, pimenta-do-reino e orégano a gosto</li>
+                    <h4>Ingredientes (Marque os que já tem):</h4>
+                    <ul class="checklist">
+                        <li><label><input type="checkbox"> 3 batatas grandes lavadas</label></li>
+                        <li><label><input type="checkbox"> 2 colheres (sopa) de azeite</label></li>
+                        <li><label><input type="checkbox"> 1 colher (chá) de páprica doce ou picante</label></li>
+                        <li><label><input type="checkbox"> Sal, pimenta-do-reino e orégano a gosto</label></li>
                     </ul>
                 </div>
 
@@ -190,21 +343,34 @@
                         <iframe src="https://www.youtube.com/embed/0Eem9EenicM" title="Como fazer Batata Rústica" allowfullscreen></iframe>
                     </div>
                 </div>
+
+                <div class="rating">
+                    <span>Avaliação: ⭐⭐⭐⭐⭐ (5.0)</span>
+                </div>
+
+                <button class="btn-print" onclick="window.print()">🖨️ Imprimir Receita</button>
             </article>
 
             <!-- Receita 2: Brigadeiro -->
             <article class="card-receita">
                 <h3>🍫 Brigadeiro Tradicional</h3>
+
+                <div class="badges-info">
+                    <span class="badge">⏱️ 20 min</span>
+                    <span class="badge">🍽️ 25 docinhos</span>
+                    <span class="badge">🟢 Muito Fácil</span>
+                </div>
+
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSJxAXeDhS3dYAH7Lp1MzcFmt-km7105UfhWHBQ6z8zGho30asI7XBqzIb&s=10" alt="Brigadeiros Tradicionais" class="img-receita">
                 <p>O doce brasileiro mais amado e fácil de fazer.</p>
                 
                 <div class="ingredientes">
-                    <h4>Ingredientes:</h4>
-                    <ul>
-                        <li>1 caixa de leite condensado (395g)</li>
-                        <li>1 colher (sopa) de manteiga</li>
-                        <li>3 colheres (sopa) de achocolatado ou cacau em pó</li>
-                        <li>Granulado para decorar</li>
+                    <h4>Ingredientes (Marque os que já tem):</h4>
+                    <ul class="checklist">
+                        <li><label><input type="checkbox"> 1 caixa de leite condensado (395g)</label></li>
+                        <li><label><input type="checkbox"> 1 colher (sopa) de manteiga</label></li>
+                        <li><label><input type="checkbox"> 3 colheres (sopa) de achocolatado ou cacau em pó</label></li>
+                        <li><label><input type="checkbox"> Granulado para decorar</label></li>
                     </ul>
                 </div>
 
@@ -224,6 +390,12 @@
                         <iframe src="https://www.youtube.com/embed/1pUQ8uKMikw" title="Receita de Brigadeiro Tradicional" allowfullscreen></iframe>
                     </div>
                 </div>
+
+                <div class="rating">
+                    <span>Avaliação: ⭐⭐⭐⭐⭐ (4.9)</span>
+                </div>
+
+                <button class="btn-print" onclick="window.print()">🖨️ Imprimir Receita</button>
             </article>
 
         </section>
@@ -233,5 +405,35 @@
         <p>&copy; 2026 receitas.com.br - Todos os direitos reservados.</p>
     </footer>
 
+    <!-- Scripts para Interatividade -->
+    <script>
+        /* Função do Modo Escuro */
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.btn-theme');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️ Modo Claro';
+            } else {
+                btn.textContent = '🌙 Modo Escuro';
+            }
+        }
+
+        /* Função da Barra de Pesquisa */
+        function filterRecipes() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.getElementsByClassName('card-receita');
+
+            for (let i = 0; i < cards.length; i++) {
+                const title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                const text = cards[i].innerText.toLowerCase();
+
+                if (title.includes(input) || text.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
