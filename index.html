@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -22,28 +22,40 @@
             color: #333;
         }
 
-        /* Cabeçalho */
+        /* Cabeçalho com Imagem de Fundo */
         header {
-            background-color: #F0C2A6;
-            text-align: center;
             max-width: 800px;
+            height: 320px; /* Altura ideal para exibir bem o logotipo */
             margin: 0 auto;
             padding: 24px 16px;
             border-radius: 0 0 12px 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            
+            /* Configuração da Imagem de Fundo */
+            background-image: url('logo-header.jpg'); /* Substiua pelo nome/caminho da sua imagem */
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Alinha o subtítulo no rodapé do cabeçalho */
+            align-items: center;
         }
 
+        /* Oculta o h1 pois a própria imagem já possui a logo escrita */
         header h1 {
-            font-family: 'SickCapital', sans-serif;
-            font-size: 2.8rem;
-            color: #8B3A00; 
-            margin: 0 0 8px 0;
+            display: none; 
         }
 
         header p {
             margin: 0;
             font-size: 1.1rem;
             color: #5A2A00;
+            background-color: rgba(255, 255, 255, 0.85); /* Fundo sutil para o texto sob a imagem */
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
         }
 
         /* Conteúdo Principal */
@@ -94,7 +106,7 @@
             font-size: 1.4rem;
         }
 
-        /* Enquadramento das Imagens */
+        /* Enquadramento das Imagens das Receitas */
         .img-receita {
             width: 100%;
             height: 300px;
